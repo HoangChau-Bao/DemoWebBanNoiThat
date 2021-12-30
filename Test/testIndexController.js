@@ -21,11 +21,11 @@ describe('Test suit main', () => {
             console.log(result);
         });
     })
-    it('test case add to cart 1', () => {
+    it('Test add to cart', () => {
         let id = '6098b821bd0c2c1b8fc81479';
-        chai.request("http://localhost:3000")       
+
+        chai.request("http://localhost:3000")   
         .post("/cart/" + id )
-        .send(isAuthenticated())
         .send({user:"hoang297"})
         .send({amount:"1"})
         .end((err,res) => {
@@ -34,6 +34,7 @@ describe('Test suit main', () => {
             (err,result) => {
                 console.log(result);
             });
+            //console.log(res.text);
 
         })
 

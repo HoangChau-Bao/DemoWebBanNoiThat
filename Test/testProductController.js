@@ -58,7 +58,7 @@ describe('Test suit 1', () => {
 
 //Phat
 describe('Test suit 2', () => {
-    it("It should get right product", (done) => {
+    it("Should get right product", (done) => {
         chai.request("http://localhost:3000")
             .get("/product/60929e4d6ce96574b4508dc9")
             .end((err,res) => {
