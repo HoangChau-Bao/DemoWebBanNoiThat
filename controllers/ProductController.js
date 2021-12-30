@@ -4,6 +4,7 @@ const supplier = require("../models/suppliers");
 const customers = require("../models/customers");
 
 class ProductController {
+  //ok
   productDetail(req, res, next) {
     var id = req.params.id;
     product.findOne({ _id: id }, (err, result) => {
@@ -16,6 +17,7 @@ class ProductController {
       }
     });
   }
+  //ok
   search(req, res, next) {
     var key = req.query.search;
     type.find({}, (err, typeResult) => {
@@ -47,6 +49,7 @@ class ProductController {
       });
     });
   }
+
   getProductDefault(req, res, next) {
     var itemsPerPage = 6;
     product.find({}, (err, result) => {
@@ -112,12 +115,13 @@ class ProductController {
       });
     });
   }
+  // ok
   filterProduct(req, res, next) {
     var selection = req.body.selection;
     var supplierFilter = req.body.supplier;
     req.session.selection = selection;
     req.session.supplierFilter = supplierFilter;
-    console.log(req.session)
+    //console.log(req.session)
     var itemsPerPage = 6;
     if(selection) {
       if(supplierFilter) {
