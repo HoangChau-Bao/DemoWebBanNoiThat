@@ -1,7 +1,8 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-chai.should();
+const server = require('../app');
 chai.use(chaiHttp);
+chai.should();
 
 describe('Test Suit main', () => {
     it("It should get right product", (done) => {
