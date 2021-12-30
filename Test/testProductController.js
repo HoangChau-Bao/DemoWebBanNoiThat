@@ -44,6 +44,7 @@ describe('Test Suit main', () => {
     })
 })
 
+//Minh Phat
 describe('Test suit 1', () => {
     it("It should get product defaul", (done) => {
         chai.request("http://localhost:3000")       
@@ -57,6 +58,7 @@ describe('Test suit 1', () => {
     })
 })
 
+//Phat
 describe('Test suit 2', () => {
     it("It should get right product", (done) => {
         chai.request("http://localhost:3000")
@@ -69,6 +71,7 @@ describe('Test suit 2', () => {
     })
 })
 
+//Huy
 describe('Test suit 3', () => {
     it("Search", (done) => {
         chai.request("http://localhost:3000")       
