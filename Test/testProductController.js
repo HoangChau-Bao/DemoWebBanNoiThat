@@ -253,7 +253,7 @@ describe('Test suit 2', () => {
             .end((err,res) => {
                 res.should.have.status(200);
                 res.text.should.include("Đèn trần Ikea Grinsbyn");
-                done()
+                done();
             })
     })
 
