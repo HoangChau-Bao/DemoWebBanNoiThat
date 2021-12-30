@@ -60,10 +60,10 @@ describe('Test suit 1', () => {
 describe('Test suit 2', () => {
     it("It should get right product", (done) => {
         chai.request("http://localhost:3000")
-            .get("/product/60929e4d6ce96574b4508dc8")
+            .get("/product/60929e4d6ce96574b4508dc9")
             .end((err,res) => {
                 res.should.have.status(200);
-                res.text.should.include("Bàn kính Ikea Vittsjo");
+                res.text.should.include("Bàn làm việc Ikea Micke");
                 done();
             })
     })
@@ -76,7 +76,7 @@ describe('Test suit 3', () => {
             .query({search:"Micke"})
             .end((err,res) => {
                 res.should.have.status(200);
-                res.text.should.include("Bàn làm việc Ikea Micke");
+                res.text.should.include("Bàn làm việc Ikea Micke");              
                 done();
             })
     })
