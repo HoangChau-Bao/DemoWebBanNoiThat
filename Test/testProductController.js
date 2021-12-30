@@ -247,15 +247,7 @@ describe('Test suit 2', () => {
                 done();
             })
     })
-    it(" should get right product by id 20", (done) => {
-        chai.request("http://localhost:3000")
-            .get("/product/6098b821bd0c2c1b8fc8147d")
-            .end((err,res) => {
-                res.should.have.status(200);
-                res.text.should.include("Đèn trần Ikea Grinsbyn");
-                done()
-            })
-    })
+
 
 
 

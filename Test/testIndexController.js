@@ -1,60 +1,31 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const type = require("../models/types");
-const supplier = require("../models/suppliers");
-const product = require("../models/products");
+const server = require('../app');
 const customers = require("../models/customers");
-const region = require('../models/region');
-const bill = require('../models/bills');
-const OjectId = require('mongodb').ObjectId;
-const { request } = require('chai');
-const passport = require('passport');
 
 chai.should();
 chai.use(chaiHttp);
 
-describe('Test suit main', () => {
+describe('Test suit main Index', () => {
     beforeEach(() => {
         customers.updateMany({ 'loginInformation.userName': "hoang297" }, { $pull: { listProduct: {} }});
-
-        customers.findOne({"loginInformation.userName":"hoang297" }, 
-        (err,result) => {
-            console.log(result);
-        });
     })
-<<<<<<< HEAD
-    // it('test case add to cart 1', () => {
-    //     let id = '6098b821bd0c2c1b8fc81479';
-    //     chai.request("http://localhost:3000")       
-    //     .post("/cart/" + id )
-    //     .send(isAuthenticated())
-    //     .send({user:"hoang297"})
-    //     .send({amount:"1"})
-    //     .end((err,res) => {
-
-    //         customers.findOne({"loginInformation.userName":"hoang297" }, 
-    //         (err,result) => {
-    //             console.log(result);
-    //         });
-=======
-    it('Test add to cart', () => {
+    it('test case add to cart 1', () => {
         let id = '6098b821bd0c2c1b8fc81479';
-
-        chai.request("http://localhost:3000").isAuthenticated()
-        .post("/cart/" + id )
+        chai.request("http://localhost:3000") 
+        .post("/cart/" + id)
+        .auth({username:"hoang297", password:"hoang297"})
         .send({user:"hoang297"})
         .send({amount:"1"})
         .end((err,res) => {
 
-            customers.findOne({"loginInformation.userName":"hoang297" }, 
-            (err,result) => {
-                console.log(result);
+            customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
+                //console.log(result);
+                result.listProduct[0].productName.should.include("Bàn");
             });
-            //console.log(res.text);
->>>>>>> 3f20ea3d06e2472b828d9d40f4f6c6bd6a60d260
 
-    //     })
+        })
 
   
-    // });
+    });
 });
