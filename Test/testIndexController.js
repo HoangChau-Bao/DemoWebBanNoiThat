@@ -8,6 +8,7 @@ const region = require('../models/region');
 const bill = require('../models/bills');
 const OjectId = require('mongodb').ObjectId;
 const { request } = require('chai');
+const passport = require('passport');
 
 chai.should();
 chai.use(chaiHttp);
@@ -24,7 +25,7 @@ describe('Test suit main', () => {
     it('Test add to cart', () => {
         let id = '6098b821bd0c2c1b8fc81479';
 
-        chai.request("http://localhost:3000")   
+        chai.request("http://localhost:3000").isAuthenticated()
         .post("/cart/" + id )
         .send({user:"hoang297"})
         .send({amount:"1"})
