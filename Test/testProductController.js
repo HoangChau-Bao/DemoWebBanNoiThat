@@ -271,6 +271,8 @@ describe('Test suit get product by ID', () => {
 
 })
 
+
+//Huy done.
 describe('Test suit 3: search', () => {
     it("Search Bàn làm việc Ikea Micke", (done) => {
         chai.request("http://localhost:3000")       
