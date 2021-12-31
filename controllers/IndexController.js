@@ -28,6 +28,7 @@ class IndexController {
         { "loginInformation.userName": req.session.passport.user.username },
         (err, customerResult) => {
           res.render("cart", { customer: customerResult, message: req.flash('success') });
+          //console.log(customerResult);
         }
       );
     } else {
@@ -119,7 +120,7 @@ class IndexController {
         console.log(err);
       });
   }
-  getDeleteProductInCart(req, res, next) {
+  getDeleteProductInCart(req, res, next) { 
     if (req.isAuthenticated()) {
       var id = req.params.id;
       var user = req.session.passport.user.username;
