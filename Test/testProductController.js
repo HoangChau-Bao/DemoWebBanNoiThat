@@ -352,13 +352,13 @@ describe('Test suit 3: search', () => {
                 done();
             })
     })
-    it("Search Tủ đồ Ikea Haugao", (done) => {
+    it("Search Tủ đồ Ikea Hauga", (done) => {
         chai.request("http://localhost:3000")       
             .get("/search")
-            .query({search:"Ikea Haugao"})
+            .query({search:"Ikea Hauga"})
             .end((err,res) => {
                 res.should.have.status(200);
-                res.text.should.include("Tủ đồ Ikea Haugao");
+                res.text.should.include("Tủ đồ Ikea Hauga");
                 done();
             })
     })
