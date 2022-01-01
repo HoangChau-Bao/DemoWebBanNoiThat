@@ -56,6 +56,71 @@ describe('Test IndexController', () => {
             })
       
         });
+        it('test case add to cart 2', (done) => {
+            let id = '60929e4d6ce96574b4508dc8'; //Đây là id product
+            chai.request("http://localhost:3000") 
+            .post("/cart/" + id)
+            .auth({username:"hoang297", password:"hoang297"})
+            .send({user:"hoang297"})
+            .send({amount:"1"})
+            .end((err,res) => {
+    
+                customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
+                    //console.log(result);
+                    result.listProduct[0].productName.should.include("Bàn kính Ikea Vittsjo"); //Đây là tên product cần kiểm tra
+                });
+                done();
+            })    
+        });
+        it('test case add to cart 3', (done) => {
+            let id = '60929e4d6ce96574b4508dc9'; //Đây là id product
+            chai.request("http://localhost:3000") 
+            .post("/cart/" + id)
+            .auth({username:"hoang297", password:"hoang297"})
+            .send({user:"hoang297"})
+            .send({amount:"1"})
+            .end((err,res) => {
+    
+                customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
+                    //console.log(result);
+                    result.listProduct[0].productName.should.include("Bàn làm việc Ikea Micke"); //Đây là tên product cần kiểm tra
+                });
+                done();
+            })
+        });
+        it('test case add to cart 4', (done) => {
+            let id = '60929e4d6ce96574b4508dca'; //Đây là id product
+            chai.request("http://localhost:3000") 
+            .post("/cart/" + id)
+            .auth({username:"hoang297", password:"hoang297"})
+            .send({user:"hoang297"})
+            .send({amount:"1"})
+            .end((err,res) => {
+    
+                customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
+                    //console.log(result);
+                    result.listProduct[0].productName.should.include("Bàn xếp Ikea Klipsk"); //Đây là tên product cần kiểm tra
+                });
+                done();
+            })
+        });
+        it('test case add to cart 5', (done) => {
+            let id = '60929e4d6ce96574b4508dcb'; //Đây là id product
+            chai.request("http://localhost:3000") 
+            .post("/cart/" + id)
+            .auth({username:"hoang297", password:"hoang297"})
+            .send({user:"hoang297"})
+            .send({amount:"1"})
+            .end((err,res) => {
+    
+                customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
+                    //console.log(result);
+                    result.listProduct[0].productName.should.include("Ghế ăn trẻ em Ikea Agam"); //Đây là tên product cần kiểm tra
+                });
+                done();
+            })
+        });
+
     });
 
     //MinhPhat
