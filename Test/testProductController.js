@@ -44,13 +44,24 @@ chai.should();
 
 //Minh Phat
 describe('Test suit 1', () => {
-    it("It should get product defaul", (done) => {
+    it("It should get product defaul 1", (done) => {
         chai.request("http://localhost:3000")       
             .post("/product/product-filter")
-            .send({selection:"609138204045f5b26f8c79ab"})
+            .send({selection:"609138204045f5b26f8c79ab"}) // ID types
             .end((err,res) => {
                 res.should.have.status(200);
-                res.text.should.include("Bàn làm việc Ikea Micke");
+                res.text.should.include("Bàn làm việc Ikea Micke"); // Product name
+                done();
+            })
+    })
+
+    it("It should get product defaul 2", (done) => {
+        chai.request("http://localhost:3000")       
+            .post("/product/product-filter")
+            .send({selection:"6091383d4045f5b26f8c79ac"}) 
+            .end((err,res) => {
+                res.should.have.status(200);
+                res.text.should.include("Ghế ăn trẻ em Ikea Agam");
                 done();
             })
     })
@@ -247,28 +258,6 @@ describe('Test suit get product by ID', () => {
                 done();
             })
     })
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    
-
-
-
-
-
 })
 
 
