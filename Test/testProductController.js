@@ -478,7 +478,7 @@ describe('Test suit 3: search', () => {
             .query({search:"Grinsbyn"})
             .end((err,res) => {
                 res.should.have.status(200);
-                res.text.should.include("Bàn kính Ikea Vittsjo");
+                res.text.should.include("Đèn trần Ikea Grinsbyn");
                 done();
             })
     })
@@ -488,7 +488,7 @@ describe('Test suit 3: search', () => {
             .query({search:"Vittsjo"})
             .end((err,res) => {
                 res.should.have.status(200);
-                res.text.should.include("Bàn kính Ikea Grinsbyn");
+                res.text.should.include("Bàn kính Ikea Vittsjo");
                 done();
             })
     })
