@@ -105,7 +105,37 @@ class IndexController {
           });
       });
     } else {
-      res.redirect("/login");
+      var id = req.params.id;
+      var user = req.body.namename;
+      var amount = req.body.quantity ? req.body.quantity : 1;
+      product.findOne({ _id: id }, (err, productResult) => {
+        customers
+          .findOneAndUpdate(
+            { "loginInformation.userName": user },
+            {
+              $push: {
+                listProduct: [
+                  {
+                    productID: productResult._id.toString(),
+                    productName: productResult.productName,
+                    productPrice: productResult.description.price,
+                    productImage: productResult.description.imageList[0],
+                    amount: amount,
+                  },
+                ],
+              },
+            }
+          )
+          .then(() => {
+            req.flash("success", "Sản phẩm đã thêm vào giỏ!");
+          })
+          .catch((err) => {
+            console.log(err);
+            req.flash("error", "Lỗi khi thêm sản phẩm vào giỏ!");
+            next();
+          });
+      });
+      res.redirect("/");
     }
   }
   postUpdateQTYInCart(req, res, next) {
