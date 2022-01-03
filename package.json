@@ -1,7 +1,7 @@
 {
   "name": "thuongmaidientu",
   "version": "1.0.0",
-  "description": "",
+  "description": "-- TK Đăng nhập người dùng\r Trang đăng nhập: http://localhost:3000/login\r TK: user\r MK: 123",
   "main": "app.js",
   "scripts": {
     "start": "nodemon --inspect app.js",
@@ -25,5 +25,14 @@
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoangChau-Bao/KiemDinhPM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HoangChau-Bao/KiemDinhPM/issues"
+  },
+  "homepage": "https://github.com/HoangChau-Bao/KiemDinhPM#readme"
 }
