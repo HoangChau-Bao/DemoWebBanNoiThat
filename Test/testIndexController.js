@@ -5,45 +5,54 @@ const chaiHttp = require("chai-http");
 const passport = require("passport");
 const server = require("../app");
 const customers = require("../models/customers");
+const product = require("../models/products");
 const OjectId = require("mongodb").ObjectId;
 
 chai.should();
 chai.use(chaiHttp);
 
 describe('Test suit main Index', () => {
-    //Test add to cart
-    // it('test case add to cart 1',  (done) => {
-    //     let id = '60929e4d6ce96574b4508dca'; //Đây là id product
-    //     chai.request("http://localhost:3000")
-    //     .post("/cart/" + id)
-    //     .send({temp:'1',namename:'hoang297'})
-    //     .then(async () => {
-    //         await customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
-    //             result.listProduct[0].productName.should.include("Bàn xếp Ikea Klipsk");      
-    //         })                   
-    //     })
-    //     .then(async () => {
-    //         await customers.updateOne({'loginInformation.userName': "hoang297" }, {$set: {'listProduct': []}},  {multi:true});
-    //         done();
-    //     })    
-    // });
 
     //Test QTY
-    it('Sample test QTY', (done) => {
-        let id = '60929e4d6ce96574b4508dca';
-
+    it('Sample test QTY',(done) => {
+        var id = '60929e4d6ce96574b4508dc8';
+        var amount = '4';  
+        
         chai.request("http://localhost:3000")
-        .post("/cart/update/" + id)
-        .send({amout:'4',username:'hoang297'})
-        .then((err,res) => {
-            console.log(res);
-        })
-
-        done();
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .post("/cart/update/" + id)
+            .send({amount:amount, username:'hoang297'})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
+                })        
+            })
+            .then(async () => {
+                await customers.updateOne(
+                { "loginInformation.userName": "hoang297" },
+                { $set: { listProduct: [] } },
+                { multi: true }
+                );
+                done();
+            });
+        });
     })
 });
-//Gia Phat
+
+
+// Gia Phat done.
 describe("Test suit main Index", () => {
+    before(() => {
+        customers.updateOne(
+            { "loginInformation.userName": "hoang297" },
+            { $set: { listProduct: [] } },
+            { multi: true }
+          );
+    });
+
   it("test case add to cart 1", (done) => {
     let id = "60929e4d6ce96574b4508dca"; //Đây là id product
     chai
@@ -570,9 +579,9 @@ describe("Test suit main Index", () => {
       });
   });
 });
-// });
 
-//MinhPhat
+
+//MinhPhat done.
 describe("Test suit add to cart 2", () => {
   beforeEach(() => {
     customers.updateMany(
@@ -1082,7 +1091,8 @@ describe("Test suit add to cart 2", () => {
   });
 });
 
-//Huy
+
+///Huy done.
 describe("Test suit add to cart 3", () => {
   beforeEach(() => {
     customers.updateMany(

@@ -143,14 +143,16 @@ class IndexController {
     var id = req.params.id;
     var quantity = parseInt(req.body.amount);
 
-    if(req.session.passport.user.username)
+    if(req.body.username != null)
+    {
+      var user = req.body.username;
+    }
+    else
       var user = req.session.passport.user.username;
-    
-    if(req.params.user)
-      var user = req.params.user;
 
     customers.updateOne({ "loginInformation.userName": user, "listProduct.productID": id }, { $set: { "listProduct.$.amount": quantity } })
       .then(() => {
+        console.log('done');
         res.redirect('/cart');
       })
       .catch((err) => {
