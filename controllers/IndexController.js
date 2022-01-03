@@ -138,10 +138,17 @@ class IndexController {
       res.redirect("/");
     }
   }
+  //will
   postUpdateQTYInCart(req, res, next) {
     var id = req.params.id;
     var quantity = parseInt(req.body.amount);
-    var user = req.session.passport.user.username;
+
+    if(req.session.passport.user.username)
+      var user = req.session.passport.user.username;
+    
+    if(req.params.user)
+      var user = req.params.user;
+
     customers.updateOne({ "loginInformation.userName": user, "listProduct.productID": id }, { $set: { "listProduct.$.amount": quantity } })
       .then(() => {
         res.redirect('/cart');
@@ -150,6 +157,7 @@ class IndexController {
         console.log(err);
       });
   }
+  //will
   getDeleteProductInCart(req, res, next) { 
     if (req.isAuthenticated()) {
       var id = req.params.id;
@@ -177,6 +185,7 @@ class IndexController {
       res.redirect('/login');
     }
   }
+  //will
   postCheckout(req, res, next) {
     if (req.isAuthenticated()) {
       var user = req.session.passport.user.username;
@@ -291,6 +300,8 @@ class IndexController {
       }
     });
   }
+
+  //will
   getAddFavorite(req, res, next) {
     if (req.isAuthenticated()) {
       var id = req.params.id;
@@ -366,6 +377,7 @@ class IndexController {
       res.redirect('/login');
     }
   }
+  //will
   getDeleteFavorite(req, res, next) {
     if (req.isAuthenticated()) {
       var id = req.params.id;

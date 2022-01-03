@@ -11,89 +11,36 @@ chai.should();
 chai.use(chaiHttp);
 
 describe('Test suit main Index', () => {
-    // beforeEach( () => {
-    //     customers.updateOne({'loginInformation.userName': "hoang297" }, {$pull: {}},  {multi:true});
-    // })
-    // afterEach( () => {
-    //     customers.updateOne({'loginInformation.userName': "hoang297" }, {$pull: {}},  {multi:true});
-    // })
+    //Test add to cart
+    // it('test case add to cart 1',  (done) => {
+    //     let id = '60929e4d6ce96574b4508dca'; //Đây là id product
+    //     chai.request("http://localhost:3000")
+    //     .post("/cart/" + id)
+    //     .send({temp:'1',namename:'hoang297'})
+    //     .then(async () => {
+    //         await customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
+    //             result.listProduct[0].productName.should.include("Bàn xếp Ikea Klipsk");      
+    //         })                   
+    //     })
+    //     .then(async () => {
+    //         await customers.updateOne({'loginInformation.userName': "hoang297" }, {$set: {'listProduct': []}},  {multi:true});
+    //         done();
+    //     })    
+    // });
 
-    it('test case add to cart 1',  (done) => {
-        let id = '60929e4d6ce96574b4508dca'; //Đây là id product
+    //Test QTY
+    it('Sample test QTY', (done) => {
+        let id = '60929e4d6ce96574b4508dca';
+
         chai.request("http://localhost:3000")
-        .post("/cart/" + id)
-        .send({temp:'1',namename:'hoang297'})
-        .then(async () => {
-            await customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
-                result.listProduct[0].productName.should.include("Bàn xếp Ikea Klipsk");      
-            })                   
+        .post("/cart/update/" + id)
+        .send({amout:'4',username:'hoang297'})
+        .then((err,res) => {
+            console.log(res);
         })
-        .then(async () => {
-            await customers.updateOne({'loginInformation.userName': "hoang297" }, {$set: {'listProduct': []}},  {multi:true});
-            done();
-        })    
-    });
-    it('test case add to cart 2',  (done) => {
-        let id = '60929e4d6ce96574b4508dca'; //Đây là id product
-        chai.request("http://localhost:3000")
-        .post("/cart/" + id)
-        .send({temp:'1',namename:'hoang297'})
-        .then(async () => {
-            await customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
-                result.listProduct[0].productName.should.include("Bàn xếp Ikea Klipsk");      
-            })                   
-        })
-        .then(async () => {
-            await customers.updateOne({'loginInformation.userName': "hoang297" }, {$set: {'listProduct': []}},  {multi:true});
-            done();
-        })    
-    });
-    it('test case add to cart 3',  (done) => {
-        let id = '60929e4d6ce96574b4508dca'; //Đây là id product
-        chai.request("http://localhost:3000")
-        .post("/cart/" + id)
-        .send({temp:'1',namename:'hoang297'})
-        .then(async () => {
-            await customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
-                result.listProduct[0].productName.should.include("Bàn xếp Ikea Klipsk");      
-            })                   
-        })
-        .then(async () => {
-            await customers.updateOne({'loginInformation.userName': "hoang297" }, {$set: {'listProduct': []}},  {multi:true});
-            done();
-        })    
-    });
-    it('test case add to cart 4',  (done) => {
-        let id = '60929e4d6ce96574b4508dca'; //Đây là id product
-        chai.request("http://localhost:3000")
-        .post("/cart/" + id)
-        .send({temp:'1',namename:'hoang297'})
-        .then(async () => {
-            await customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
-                result.listProduct[0].productName.should.include("Bàn xếp Ikea Klipsk");      
-            })                   
-        })
-        .then(async () => {
-            await customers.updateOne({'loginInformation.userName': "hoang297" }, {$set: {'listProduct': []}},  {multi:true});
-            done();
-        })    
-    });
-    it('test case add to cart 5',  (done) => {
-        let id = '6098b821bd0c2c1b8fc81478'; //Đây là id product
-        chai.request("http://localhost:3000")
-        .post("/cart/" + id)
-        .send({temp:'1',namename:'hoang297'})
-        .then(async () => {
-            await customers.findOne({"loginInformation.userName":"hoang297" }, (err,result) => {
-                result.listProduct[0].productName.should.include("Giường ngủ Ikea Hemnes");     
-                //console.log(result); 
-            })                   
-        })
-        .then(async () => {
-            await customers.updateOne({'loginInformation.userName': "hoang297" }, {$set: {'listProduct': []}},  {multi:true});
-            done();
-        })    
-    });
+
+        done();
+    })
 });
     //Gia Phat
 describe('Test suit main Index', () => {   
