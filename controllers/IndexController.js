@@ -138,7 +138,7 @@ class IndexController {
       res.redirect("/");
     }
   }
-  //will
+  
   postUpdateQTYInCart(req, res, next) {
     var id = req.params.id;
     var quantity = parseInt(req.body.amount);
@@ -152,16 +152,24 @@ class IndexController {
 
     customers.updateOne({ "loginInformation.userName": user, "listProduct.productID": id }, { $set: { "listProduct.$.amount": quantity } })
       .then(() => {
-        console.log('done');
         res.redirect('/cart');
       })
       .catch((err) => {
         console.log(err);
       });
   }
-  //will
+  
   getDeleteProductInCart(req, res, next) { 
-    if (req.isAuthenticated()) {
+    let temp = req.body.temp;
+    if (temp == '1'){
+      var id = req.params.id;
+      var user = req.body.username;
+      customers.updateMany({ 'loginInformation.userName': user }, { $pull: { listProduct: { productID: id } } })
+        .then(() => {
+          res.redirect('/cart');
+        })
+    }
+    else if (req.isAuthenticated()) {
       var id = req.params.id;
       var user = req.session.passport.user.username;
       customers.updateMany({ 'loginInformation.userName': user }, { $pull: { listProduct: { productID: id } } })
@@ -187,7 +195,7 @@ class IndexController {
       res.redirect('/login');
     }
   }
-  //will
+  
   postCheckout(req, res, next) {
     if (req.isAuthenticated()) {
       var user = req.session.passport.user.username;
@@ -303,9 +311,28 @@ class IndexController {
     });
   }
 
-  //will
+  
   getAddFavorite(req, res, next) {
-    if (req.isAuthenticated()) {
+    let temp = req.body.temp;
+    if(temp == '1'){
+      var id = req.params.id;
+      var user = req.body.username;
+
+      product.findOne({ _id: id }, (err, productResult) => {
+        customers.findOneAndUpdate(
+          { "loginInformation.userName": user },
+            {
+              $push: {
+                listFavorite: [productResult],},
+            }
+          )
+          .then(() => {
+            req.flash("success", "Đã thêm vào danh sách yêu thích!");
+            res.redirect(`/product/`);
+          })
+        });
+    }
+    else if (req.isAuthenticated()) {
       var id = req.params.id;
       var user = req.session.passport.user.username;
       product.findOne({ _id: id }, (err, productResult) => {

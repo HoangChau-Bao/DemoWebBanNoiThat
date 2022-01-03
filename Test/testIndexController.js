@@ -13,10 +13,10 @@ chai.use(chaiHttp);
 
 describe('Test suit main Index', () => {
 
-    //Test QTY
+    //Test QTY GPhat 
     it('Sample test QTY',(done) => {
-        var id = '60929e4d6ce96574b4508dc8';
-        var amount = '4';  
+        var id = '60929e4d6ce96574b4508dc8'; // product ID
+        var amount = '4';  // Quantity, change another each test case
         
         chai.request("http://localhost:3000")
         .post("/cart/" + id)
@@ -39,6 +39,44 @@ describe('Test suit main Index', () => {
                 done();
             });
         });
+    })
+
+    //Test delete cart QHuy
+    it('Sample delete cart item', (done) => {
+        let id = '60929e4d6ce96574b4508dca'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+
+    //Test add favorite MPhat
+    it('Sample add favorite', (done) => {
+        let id = '60929e4d6ce96574b4508dca'; // product ID
+        chai.request("http://localhost:3000")
+            .get("/product/favorite/" + id)
+            .send({temp:'1',username:'hoang297'})
+            .then(async ()=>{
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listFavorite[0].productName.should.equal("Bàn xếp Ikea Klipsk"); // productName             
+                })   
+            })
+            .then(async () => {
+                await customers.updateOne(
+                    { "loginInformation.userName": "hoang297" },{ $set: { listFavorite: [] } },{ multi: true });
+                done();
+            }) 
     })
 });
 
