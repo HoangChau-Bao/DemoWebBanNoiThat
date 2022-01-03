@@ -11,6 +11,7 @@ const OjectId = require("mongodb").ObjectId;
 chai.should();
 chai.use(chaiHttp);
 
+/*
 describe('Test suit main Index', () => {
 
     //Test QTY GPhat 
@@ -79,6 +80,7 @@ describe('Test suit main Index', () => {
             }) 
     })
 });
+*/
 
 
 // Gia Phat done.
@@ -1640,3 +1642,76 @@ describe("Test suit add to cart 3", () => {
       });
   });
 });
+
+//GiaPhat
+describe("Test suit change QTY", () => {
+    it('Test change QTY 1',(done) => {
+        var id = '60929e4d6ce96574b4508dc8'; // product ID
+        var amount = '4';  // Quantity, change another each test case
+        
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .post("/cart/update/" + id)
+            .send({amount:amount, username:'hoang297'})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
+                })        
+            })
+            .then(async () => {
+                await customers.updateOne(
+                { "loginInformation.userName": "hoang297" },
+                { $set: { listProduct: [] } },
+                { multi: true }
+                );
+                done();
+            });
+        });
+    })
+})
+
+//MinhPhat
+describe("Test suit add favorite", () => {
+    it('Test add fovorite 1', (done) => {
+        let id = '60929e4d6ce96574b4508dca'; // product ID
+        chai.request("http://localhost:3000")
+            .get("/product/favorite/" + id)
+            .send({temp:'1',username:'hoang297'})
+            .then(async ()=>{
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listFavorite[0].productName.should.equal("Bàn xếp Ikea Klipsk"); // productName             
+                })   
+            })
+            .then(async () => {
+                await customers.updateOne(
+                    { "loginInformation.userName": "hoang297" },{ $set: { listFavorite: [] } },{ multi: true });
+                done();
+            }) 
+    })
+})
+
+//QuocHuy
+describe("Test suit delete cart item",() => {
+    it('Test delete cart item 1', (done) => {
+        let id = '60929e4d6ce96574b4508dca'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+
+})
