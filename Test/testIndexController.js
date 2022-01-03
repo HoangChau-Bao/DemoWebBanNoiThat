@@ -1713,5 +1713,346 @@ describe("Test suit delete cart item",() => {
             })
         })
     })
+    it('Test delete cart item 2', (done) => {
+        let id = '60929e4d6ce96574b4508dc8'; // product ID
 
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 3', (done) => {
+        let id = '60929e4d6ce96574b4508dc9'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 4', (done) => {
+        let id = '60929e4d6ce96574b4508dcb'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 5', (done) => {
+        let id = '60929e4d6ce96574b4508dcc'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 6', (done) => {
+        let id = '60929e4d6ce96574b4508dcd'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 7', (done) => {
+        let id = '60929e4d6ce96574b4508dce'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 8', (done) => {
+        let id = '6098b821bd0c2c1b8fc81472'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 9', (done) => {
+        let id = '66098b821bd0c2c1b8fc81473'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 10', (done) => {
+        let id = '6098b821bd0c2c1b8fc81474'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 11', (done) => {
+        let id = '6098b821bd0c2c1b8fc81475'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 12', (done) => {
+        let id = '6098b821bd0c2c1b8fc81476'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 13', (done) => {
+        let id = '6098b821bd0c2c1b8fc81477'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 14', (done) => {
+        let id = '6098b821bd0c2c1b8fc81478'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 15', (done) => {
+        let id = '6098b821bd0c2c1b8fc81479'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 16', (done) => {
+        let id = '6098b821bd0c2c1b8fc8147a'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 17', (done) => {
+        let id = '6098b821bd0c2c1b8fc8147b'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 18', (done) => {
+        let id = '6098b821bd0c2c1b8fc8147c'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 19', (done) => {
+        let id = '6098b821bd0c2c1b8fc8147d'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
+    it('Test delete cart item 20', (done) => {
+        let id = '66098b821bd0c2c1b8fc8147e'; // product ID
+
+        chai.request("http://localhost:3000")
+        .post("/cart/" + id)
+        .send({ temp: "1", namename: "hoang297" })
+        .end(() => {
+            chai.request("http://localhost:3000")
+            .get("/cart/delete/" + id)
+            .send({temp:'1',username:"hoang297"})
+            .then(async () => { 
+                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
+                    result.listProduct.length.should.equal(0);                 
+                })   
+                done();     
+            })
+        })
+    })
 })
