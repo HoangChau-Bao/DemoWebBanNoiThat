@@ -11,82 +11,10 @@ const OjectId = require("mongodb").ObjectId;
 chai.should();
 chai.use(chaiHttp);
 
-/*
-describe('Test suit main Index', () => {
-
-    //Test QTY GPhat 
-    it('Sample test QTY',(done) => {
-        var id = '60929e4d6ce96574b4508dc8'; // product ID
-        var amount = '4';  // Quantity, change another each test case
-        
-        chai.request("http://localhost:3000")
-        .post("/cart/" + id)
-        .send({ temp: "1", namename: "hoang297" })
-        .end(() => {
-            chai.request("http://localhost:3000")
-            .post("/cart/update/" + id)
-            .send({amount:amount, username:'hoang297'})
-            .then(async () => { 
-                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                    result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-                })        
-            })
-            .then(async () => {
-                await customers.updateOne(
-                { "loginInformation.userName": "hoang297" },
-                { $set: { listProduct: [] } },
-                { multi: true }
-                );
-                done();
-            });
-        });
-    })
-
-    //Test delete cart QHuy
-    it('Sample delete cart item', (done) => {
-        let id = '60929e4d6ce96574b4508dca'; // product ID
-
-        chai.request("http://localhost:3000")
-        .post("/cart/" + id)
-        .send({ temp: "1", namename: "hoang297" })
-        .end(() => {
-            chai.request("http://localhost:3000")
-            .get("/cart/delete/" + id)
-            .send({temp:'1',username:"hoang297"})
-            .then(async () => { 
-                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                    result.listProduct.length.should.equal(0);                 
-                })   
-                done();     
-            })
-        })
-    })
-
-    //Test add favorite MPhat
-    it('Sample add favorite', (done) => {
-        let id = '60929e4d6ce96574b4508dca'; // product ID
-        chai.request("http://localhost:3000")
-            .get("/product/favorite/" + id)
-            .send({temp:'1',username:'hoang297'})
-            .then(async ()=>{
-                await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                    result.listFavorite[0].productName.should.equal("Bàn xếp Ikea Klipsk"); // productName             
-                })   
-            })
-            .then(async () => {
-                await customers.updateOne(
-                    { "loginInformation.userName": "hoang297" },{ $set: { listFavorite: [] } },{ multi: true });
-                done();
-            }) 
-    })
-});
-*/
-
-// Gia Phat done.
-describe("Test suit main Index", () => {
+describe("Test suit add to cart user 'a'", () => {
   before(() => {
     customers.updateOne(
-      { "loginInformation.userName": "hoang297" },
+      { "loginInformation.userName": "a" },
       { $set: { listProduct: [] } },
       { multi: true }
     );
@@ -97,10 +25,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Bàn xếp Ikea Klipsk"
@@ -110,7 +38,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -122,10 +50,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Bàn kính Ikea Vittsjo"
@@ -135,7 +63,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -147,10 +75,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Bàn làm việc Ikea Micke"
@@ -160,7 +88,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -172,10 +100,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Bàn xếp Ikea Klipsk"
@@ -185,7 +113,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -197,10 +125,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Ghế ăn trẻ em Ikea Agam"
@@ -210,7 +138,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -222,10 +150,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Ghế bậc thang Ikea Bekvam"
@@ -235,7 +163,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -247,10 +175,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Ghế đôn Ikea Marius"
@@ -260,7 +188,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -272,10 +200,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Ghế xếp gọn Ikea Nisse"
@@ -285,7 +213,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -297,10 +225,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ TV Ikea Brimne"
@@ -310,7 +238,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -322,10 +250,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ đồ Ikea Hauga"
@@ -335,7 +263,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -347,10 +275,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ đa năng Ikea Hemnes"
@@ -360,7 +288,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -372,10 +300,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ đa năng Ikea Malm"
@@ -385,7 +313,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -397,10 +325,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ đa năng Ikea Songesand"
@@ -410,7 +338,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -422,10 +350,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Malm"
@@ -435,7 +363,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -447,10 +375,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Hemnes"
@@ -460,7 +388,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -472,10 +400,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Delaktig"
@@ -485,7 +413,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -497,10 +425,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Grimsbu"
@@ -510,7 +438,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -522,10 +450,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Songesand"
@@ -535,7 +463,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -547,10 +475,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Leirvik"
@@ -560,7 +488,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -572,10 +500,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Nordli"
@@ -585,7 +513,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -597,10 +525,10 @@ describe("Test suit main Index", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "a" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Đèn trần Ikea Grinsbyn"
@@ -610,7 +538,7 @@ describe("Test suit main Index", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "a" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -619,8 +547,8 @@ describe("Test suit main Index", () => {
   });
 });
 
-//MinhPhat done.
-describe("Test suit add to cart 2", () => {
+
+describe("Test suit add to cart user 'hoang297'", () => {
   beforeEach(() => {
     customers.updateMany(
       { "loginInformation.userName": "hoang297" },
@@ -1129,11 +1057,11 @@ describe("Test suit add to cart 2", () => {
   });
 });
 
-///Huy done.
-describe("Test suit add to cart 3", () => {
+
+describe("Test suit add to cart user 'user'", () => {
   beforeEach(() => {
     customers.updateMany(
-      { "loginInformation.userName": "hoang297" },
+      { "loginInformation.userName": "user" },
       { $pull: { listProduct: {} } }
     );
   });
@@ -1143,10 +1071,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Bàn xếp Ikea Klipsk"
@@ -1156,7 +1084,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1168,10 +1096,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Bàn kính Ikea Vittsjo"
@@ -1181,7 +1109,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1193,10 +1121,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Bàn làm việc Ikea Micke"
@@ -1206,7 +1134,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1218,10 +1146,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Ghế ăn trẻ em Ikea Agam"
@@ -1231,7 +1159,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1243,10 +1171,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Ghế bậc thang Ikea Bekvam"
@@ -1256,7 +1184,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1268,10 +1196,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Ghế đôn Ikea Marius"
@@ -1281,7 +1209,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1293,10 +1221,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Ghế xếp gọn Ikea Nisse"
@@ -1306,7 +1234,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1318,10 +1246,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ TV Ikea Brimne"
@@ -1331,7 +1259,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1343,10 +1271,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ đồ Ikea Hauga"
@@ -1356,7 +1284,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1368,10 +1296,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ đa năng Ikea Hemnes"
@@ -1381,7 +1309,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1393,10 +1321,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ đa năng Ikea Malm"
@@ -1406,7 +1334,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1418,10 +1346,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Tủ đa năng Ikea Songesand"
@@ -1431,7 +1359,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1443,10 +1371,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Malm"
@@ -1456,7 +1384,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1468,10 +1396,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Hemnes"
@@ -1481,7 +1409,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1493,10 +1421,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Delaktig"
@@ -1506,7 +1434,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1518,10 +1446,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Grimsbu"
@@ -1531,7 +1459,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1543,10 +1471,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Songesand"
@@ -1556,7 +1484,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1568,10 +1496,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Leirvik"
@@ -1581,7 +1509,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1593,10 +1521,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Giường ngủ Ikea Nordli"
@@ -1606,7 +1534,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1618,10 +1546,10 @@ describe("Test suit add to cart 3", () => {
     chai
       .request("http://localhost:3000")
       .post("/cart/" + id)
-      .send({ temp: "1", namename: "hoang297" })
+      .send({ temp: "1", namename: "user" })
       .then(async () => {
         await customers.findOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           (err, result) => {
             result.listProduct[0].productName.should.include(
               "Đèn trần Ikea Grinsbyn"
@@ -1631,7 +1559,7 @@ describe("Test suit add to cart 3", () => {
       })
       .then(async () => {
         await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
+          { "loginInformation.userName": "user" },
           { $set: { listProduct: [] } },
           { multi: true }
         );
@@ -1640,7 +1568,7 @@ describe("Test suit add to cart 3", () => {
   });
 });
 
-//GiaPhat done.
+
 describe("Test suit change QTY 1", () => {
   it("Sample test QTY", (done) => {
     var id = "60929e4d6ce96574b4508dc8"; // product ID
@@ -2304,7 +2232,7 @@ describe("Test suit change QTY 1", () => {
   });
 });
 
-//QuocHuy done.
+
 describe("Test suit delete cart item", () => {
   it("Test delete cart item 1", (done) => {
     let id = "60929e4d6ce96574b4508dca"; // product ID
@@ -2768,7 +2696,7 @@ describe("Test suit delete cart item", () => {
   });
 });
 
-//MinhPhat
+
 describe("Test suit add favorite", () => {
   it("Test add fovorite 1", (done) => {
     let id = "60929e4d6ce96574b4508dc8"; // product ID
