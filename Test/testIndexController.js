@@ -1641,9 +1641,9 @@ describe("Test suit add to cart 3", () => {
         done();
       });
   });
+})
 
-
-//GiaPhat
+//GiaPhat done.
 describe("Test suit change QTY 1", () => {
   it('Sample test QTY',(done) => {
     var id = '60929e4d6ce96574b4508dc8'; // product ID
@@ -2168,7 +2168,7 @@ it('Sample test QTY 20',(done) => {
 })
 
 
-//QuocHuy
+//QuocHuy done.
 describe("Test suit delete cart item",() => {
   it('Test delete cart item 1', (done) => {
       let id = '60929e4d6ce96574b4508dca'; // product ID
@@ -2550,4 +2550,4 @@ describe("Test suit add favorite", () => {
               done();
           }) 
   })
-}) })
+}) 
