@@ -2315,7 +2315,7 @@ describe("Test suit delete cart item",() => {
       })
   })
   it('Test delete cart item 9', (done) => {
-      let id = '66098b821bd0c2c1b8fc81473'; // product ID
+      let id = '6098b821bd0c2c1b8fc81473'; // product ID
 
       chai.request("http://localhost:3000")
       .post("/cart/" + id)
@@ -2513,7 +2513,7 @@ describe("Test suit delete cart item",() => {
       })
   })
   it('Test delete cart item 20', (done) => {
-      let id = '66098b821bd0c2c1b8fc8147e'; // product ID
+      let id = '6098b821bd0c2c1b8fc8147e'; // product ID
 
       chai.request("http://localhost:3000")
       .post("/cart/" + id)
