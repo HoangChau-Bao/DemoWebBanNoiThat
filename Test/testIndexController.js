@@ -82,16 +82,15 @@ describe('Test suit main Index', () => {
 });
 */
 
-
 // Gia Phat done.
 describe("Test suit main Index", () => {
-    before(() => {
-        customers.updateOne(
-            { "loginInformation.userName": "hoang297" },
-            { $set: { listProduct: [] } },
-            { multi: true }
-          );
-    });
+  before(() => {
+    customers.updateOne(
+      { "loginInformation.userName": "hoang297" },
+      { $set: { listProduct: [] } },
+      { multi: true }
+    );
+  });
 
   it("test case add to cart 1", (done) => {
     let id = "60929e4d6ce96574b4508dca"; //Đây là id product
@@ -619,7 +618,6 @@ describe("Test suit main Index", () => {
       });
   });
 });
-
 
 //MinhPhat done.
 describe("Test suit add to cart 2", () => {
@@ -1131,7 +1129,6 @@ describe("Test suit add to cart 2", () => {
   });
 });
 
-
 ///Huy done.
 describe("Test suit add to cart 3", () => {
   beforeEach(() => {
@@ -1641,913 +1638,1634 @@ describe("Test suit add to cart 3", () => {
         done();
       });
   });
-})
+});
 
 //GiaPhat done.
 describe("Test suit change QTY 1", () => {
-  it('Sample test QTY',(done) => {
-    var id = '60929e4d6ce96574b4508dc8'; // product ID
-    var amount = '4';  // Quantity, change another each test case
-    
-    chai.request("http://localhost:3000")
-    .post("/cart/" + id)
-    .send({ temp: "1", namename: "hoang297" })
-    .end(() => {
-        chai.request("http://localhost:3000")
-        .post("/cart/update/" + id)
-        .send({amount:amount, username:'hoang297'})
-        .then(async () => { 
-            await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-            })        
-        })
-        .then(async () => {
+  it("Sample test QTY", (done) => {
+    var id = "60929e4d6ce96574b4508dc8"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
             await customers.updateOne(
-            { "loginInformation.userName": "hoang297" },
-            { $set: { listProduct: [] } },
-            { multi: true }
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
             );
             done();
-        });
-    });
-});
-it('Sample test QTY 2',(done) => {
-  var id = '60929e4d6ce96574b4508dc9'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
+          });
       });
   });
-});
-it('Sample test QTY 3',(done) => {
-  var id = '60929e4d6ce96574b4508dca'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 4',(done) => {
-  var id = '60929e4d6ce96574b4508dcb'; // product ID
-  var amount = '8';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 5',(done) => {
-  var id = '60929e4d6ce96574b4508dcc'; // product ID
-  var amount = '1';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 6',(done) => {
-  var id = '60929e4d6ce96574b4508dcd'; // product ID
-  var amount = '8';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 7 ',(done) => {
-  var id = '60929e4d6ce96574b4508dce'; // product ID
-  var amount = '6';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 8',(done) => {
-  var id = '6098b821bd0c2c1b8fc81472'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 9',(done) => {
-  var id = '6098b821bd0c2c1b8fc81473'; // product ID
-  var amount = '5';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 10',(done) => {
-  var id = '6098b821bd0c2c1b8fc81474'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 11',(done) => {
-  var id = '6098b821bd0c2c1b8fc81475'; // product ID
-  var amount = '7';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 12',(done) => {
-  var id = '6098b821bd0c2c1b8fc81476'; // product ID
-  var amount = '8';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 13',(done) => {
-  var id = '6098b821bd0c2c1b8fc81477'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 14',(done) => {
-  var id = '6098b821bd0c2c1b8fc81478'; // product ID
-  var amount = '1';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 15',(done) => {
-  var id = '6098b821bd0c2c1b8fc81479'; // product ID
-  var amount = '7';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 16',(done) => {
-  var id = '6098b821bd0c2c1b8fc8147a'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 17',(done) => {
-  var id = '6098b821bd0c2c1b8fc8147b'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 18',(done) => {
-  var id = '6098b821bd0c2c1b8fc8147c'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 19',(done) => {
-  var id = '6098b821bd0c2c1b8fc8147d'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-it('Sample test QTY 20',(done) => {
-  var id = '6098b821bd0c2c1b8fc8147e'; // product ID
-  var amount = '4';  // Quantity, change another each test case
-  
-  chai.request("http://localhost:3000")
-  .post("/cart/" + id)
-  .send({ temp: "1", namename: "hoang297" })
-  .end(() => {
-      chai.request("http://localhost:3000")
-      .post("/cart/update/" + id)
-      .send({amount:amount, username:'hoang297'})
-      .then(async () => { 
-          await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-              result.listProduct[0].amount.should.equal(Number.parseInt(amount));                 
-          })        
-      })
-      .then(async () => {
-          await customers.updateOne(
-          { "loginInformation.userName": "hoang297" },
-          { $set: { listProduct: [] } },
-          { multi: true }
-          );
-          done();
-      });
-  });
-});
-})
+  it("Sample test QTY 2", (done) => {
+    var id = "60929e4d6ce96574b4508dc9"; // product ID
+    var amount = "4"; // Quantity, change another each test case
 
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 3", (done) => {
+    var id = "60929e4d6ce96574b4508dca"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 4", (done) => {
+    var id = "60929e4d6ce96574b4508dcb"; // product ID
+    var amount = "8"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 5", (done) => {
+    var id = "60929e4d6ce96574b4508dcc"; // product ID
+    var amount = "1"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 6", (done) => {
+    var id = "60929e4d6ce96574b4508dcd"; // product ID
+    var amount = "8"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 7 ", (done) => {
+    var id = "60929e4d6ce96574b4508dce"; // product ID
+    var amount = "6"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 8", (done) => {
+    var id = "6098b821bd0c2c1b8fc81472"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 9", (done) => {
+    var id = "6098b821bd0c2c1b8fc81473"; // product ID
+    var amount = "5"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 10", (done) => {
+    var id = "6098b821bd0c2c1b8fc81474"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 11", (done) => {
+    var id = "6098b821bd0c2c1b8fc81475"; // product ID
+    var amount = "7"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 12", (done) => {
+    var id = "6098b821bd0c2c1b8fc81476"; // product ID
+    var amount = "8"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 13", (done) => {
+    var id = "6098b821bd0c2c1b8fc81477"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 14", (done) => {
+    var id = "6098b821bd0c2c1b8fc81478"; // product ID
+    var amount = "1"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 15", (done) => {
+    var id = "6098b821bd0c2c1b8fc81479"; // product ID
+    var amount = "7"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 16", (done) => {
+    var id = "6098b821bd0c2c1b8fc8147a"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 17", (done) => {
+    var id = "6098b821bd0c2c1b8fc8147b"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 18", (done) => {
+    var id = "6098b821bd0c2c1b8fc8147c"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 19", (done) => {
+    var id = "6098b821bd0c2c1b8fc8147d"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+  it("Sample test QTY 20", (done) => {
+    var id = "6098b821bd0c2c1b8fc8147e"; // product ID
+    var amount = "4"; // Quantity, change another each test case
+
+    chai
+      .request("http://localhost:3000")
+      .post("/cart/" + id)
+      .send({ temp: "1", namename: "hoang297" })
+      .end(() => {
+        chai
+          .request("http://localhost:3000")
+          .post("/cart/update/" + id)
+          .send({ amount: amount, username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct[0].amount.should.equal(
+                  Number.parseInt(amount)
+                );
+              }
+            );
+          })
+          .then(async () => {
+            await customers.updateOne(
+              { "loginInformation.userName": "hoang297" },
+              { $set: { listProduct: [] } },
+              { multi: true }
+            );
+            done();
+          });
+      });
+  });
+});
 
 //QuocHuy done.
-describe("Test suit delete cart item",() => {
-  it('Test delete cart item 1', (done) => {
-      let id = '60929e4d6ce96574b4508dca'; // product ID
+describe("Test suit delete cart item", () => {
+  it("Test delete cart item 1", (done) => {
+    let id = "60929e4d6ce96574b4508dca"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 2', (done) => {
-      let id = '60929e4d6ce96574b4508dc8'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 2", (done) => {
+    let id = "60929e4d6ce96574b4508dc8"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 3', (done) => {
-      let id = '60929e4d6ce96574b4508dc9'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 3", (done) => {
+    let id = "60929e4d6ce96574b4508dc9"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 4', (done) => {
-      let id = '60929e4d6ce96574b4508dcb'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 4", (done) => {
+    let id = "60929e4d6ce96574b4508dcb"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 5', (done) => {
-      let id = '60929e4d6ce96574b4508dcc'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 5", (done) => {
+    let id = "60929e4d6ce96574b4508dcc"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 6', (done) => {
-      let id = '60929e4d6ce96574b4508dcd'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 6", (done) => {
+    let id = "60929e4d6ce96574b4508dcd"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 7', (done) => {
-      let id = '60929e4d6ce96574b4508dce'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 7", (done) => {
+    let id = "60929e4d6ce96574b4508dce"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 8', (done) => {
-      let id = '6098b821bd0c2c1b8fc81472'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 8", (done) => {
+    let id = "6098b821bd0c2c1b8fc81472"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 9', (done) => {
-      let id = '6098b821bd0c2c1b8fc81473'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 9", (done) => {
+    let id = "6098b821bd0c2c1b8fc81473"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 10', (done) => {
-      let id = '6098b821bd0c2c1b8fc81474'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 10", (done) => {
+    let id = "6098b821bd0c2c1b8fc81474"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 11', (done) => {
-      let id = '6098b821bd0c2c1b8fc81475'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 11", (done) => {
+    let id = "6098b821bd0c2c1b8fc81475"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 12', (done) => {
-      let id = '6098b821bd0c2c1b8fc81476'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 12", (done) => {
+    let id = "6098b821bd0c2c1b8fc81476"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 13', (done) => {
-      let id = '6098b821bd0c2c1b8fc81477'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 13", (done) => {
+    let id = "6098b821bd0c2c1b8fc81477"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 14', (done) => {
-      let id = '6098b821bd0c2c1b8fc81478'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 14", (done) => {
+    let id = "6098b821bd0c2c1b8fc81478"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 15', (done) => {
-      let id = '6098b821bd0c2c1b8fc81479'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 15", (done) => {
+    let id = "6098b821bd0c2c1b8fc81479"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 16', (done) => {
-      let id = '6098b821bd0c2c1b8fc8147a'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 16", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147a"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 17', (done) => {
-      let id = '6098b821bd0c2c1b8fc8147b'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 17", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147b"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 18', (done) => {
-      let id = '6098b821bd0c2c1b8fc8147c'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 18", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147c"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 19', (done) => {
-      let id = '6098b821bd0c2c1b8fc8147d'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 19", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147d"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-  it('Test delete cart item 20', (done) => {
-      let id = '6098b821bd0c2c1b8fc8147e'; // product ID
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+  it("Test delete cart item 20", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147e"; // product ID
 
-      chai.request("http://localhost:3000")
+    chai
+      .request("http://localhost:3000")
       .post("/cart/" + id)
       .send({ temp: "1", namename: "hoang297" })
       .end(() => {
-          chai.request("http://localhost:3000")
+        chai
+          .request("http://localhost:3000")
           .get("/cart/delete/" + id)
-          .send({temp:'1',username:"hoang297"})
-          .then(async () => { 
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listProduct.length.should.equal(0);                 
-              })   
-              done();     
-          })
-      })
-  })
-})
+          .send({ temp: "1", username: "hoang297" })
+          .then(async () => {
+            await customers.findOne(
+              { "loginInformation.userName": "hoang297" },
+              (err, result) => {
+                result.listProduct.length.should.equal(0);
+              }
+            );
+            done();
+          });
+      });
+  });
+});
 
 //MinhPhat
 describe("Test suit add favorite", () => {
-  it('Test add fovorite 1', (done) => {
-      let id = '60929e4d6ce96574b4508dca'; // product ID
-      chai.request("http://localhost:3000")
-          .get("/product/favorite/" + id)
-          .send({temp:'1',username:'hoang297'})
-          .then(async ()=>{
-              await customers.findOne({"loginInformation.userName":"hoang297"}, (err,result) => {
-                  result.listFavorite[0].productName.should.equal("Bàn xếp Ikea Klipsk"); // productName             
-              })   
-          })
-          .then(async () => {
-              await customers.updateOne(
-                  { "loginInformation.userName": "hoang297" },{ $set: { listFavorite: [] } },{ multi: true });
-              done();
-          }) 
-  })
-}) 
+  it("Test add fovorite 1", (done) => {
+    let id = "60929e4d6ce96574b4508dc8"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Bàn kính Ikea Vittsjo"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 2", (done) => {
+    let id = "60929e4d6ce96574b4508dc9"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Bàn làm việc Ikea Micke"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 3", (done) => {
+    let id = "60929e4d6ce96574b4508dca"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Bàn xếp Ikea Klipsk"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 4", (done) => {
+    let id = "60929e4d6ce96574b4508dcb"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Ghế ăn trẻ em Ikea Agam"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 5", (done) => {
+    let id = "60929e4d6ce96574b4508dcc"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Ghế bậc thang Ikea Bekvam"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 6", (done) => {
+    let id = "60929e4d6ce96574b4508dcd"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Ghế đôn Ikea Marius"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 7", (done) => {
+    let id = "60929e4d6ce96574b4508dce"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Ghế xếp gọn Ikea Nisse"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 8", (done) => {
+    let id = "6098b821bd0c2c1b8fc81472"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Tủ TV Ikea Brimne"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 9", (done) => {
+    let id = "6098b821bd0c2c1b8fc81473"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal("Tủ đồ Ikea Hauga"); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 10", (done) => {
+    let id = "6098b821bd0c2c1b8fc81474"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Tủ đa năng Ikea Hemnes"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 11", (done) => {
+    let id = "6098b821bd0c2c1b8fc81475"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Tủ đa năng Ikea Malm"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 12", (done) => {
+    let id = "6098b821bd0c2c1b8fc81476"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Tủ đa năng Ikea Songesand"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 13", (done) => {
+    let id = "6098b821bd0c2c1b8fc81477"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Giường ngủ Ikea Malm"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 14", (done) => {
+    let id = "6098b821bd0c2c1b8fc81478"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Giường ngủ Ikea Hemnes"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 15", (done) => {
+    let id = "6098b821bd0c2c1b8fc81479"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Giường ngủ Ikea Delaktig"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 16", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147a"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Giường ngủ Ikea Grimsbu"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 17", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147b"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Giường ngủ Ikea Songesand"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 18", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147c"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Giường ngủ Ikea Leirvik"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 19", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147d"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Giường ngủ Ikea Nordli"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+  it("Test add fovorite 20", (done) => {
+    let id = "6098b821bd0c2c1b8fc8147e"; // product ID
+    chai
+      .request("http://localhost:3000")
+      .get("/product/favorite/" + id)
+      .send({ temp: "1", username: "hoang297" })
+      .then(async () => {
+        await customers.findOne(
+          { "loginInformation.userName": "hoang297" },
+          (err, result) => {
+            result.listFavorite[0].productName.should.equal(
+              "Đèn trần Ikea Grinsbyn"
+            ); // productName
+          }
+        );
+      })
+      .then(async () => {
+        await customers.updateOne(
+          { "loginInformation.userName": "hoang297" },
+          { $set: { listFavorite: [] } },
+          { multi: true }
+        );
+        done();
+      });
+  });
+});
