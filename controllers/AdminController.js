@@ -4,6 +4,7 @@ const product = require("../models/products");
 const admin = require("../models/admin");
 const bill = require('../models/bills');
 const region = require("../models/region");
+const mySingleton = require('../controllers/SingletonCategory');
 class AdminController {
   getLoginPage(req, res, next) {
     res.render("login", { message: req.flash("error") });
@@ -249,16 +250,26 @@ class AdminController {
   }
   getCategoriesManagerPage(req, res, next) {
     var numberItemPerpage = 6;
+    var singleA = mySingleton.getInstance();
     if(req.isAuthenticated()) {
       admin.findOne({"loginInformation.userName": req.session.passport.user.username}, (err, customerResult) => {
-        type.find({}, (err, typeResult) => {
-          res.render('categories-manager', {
-            customer: customerResult,
-            categories: typeResult,
-            page: 1,
-            numberItemPerpage: numberItemPerpage,
-            message: req.flash("success")
-          });
+        // type.find({}, (err, typeResult) => {
+        //   res.render('categories-manager', {
+        //     customer: customerResult,
+        //     categories: typeResult,
+        //     page: 1,
+        //     numberItemPerpage: numberItemPerpage,
+        //     message: req.flash("success")
+        //   });
+        //   //console.log(typeResult);
+        // });
+        
+        res.render('categories-manager', {
+          customer: customerResult,
+          categories: singleA.getList(),
+          page: 1,
+          numberItemPerpage: numberItemPerpage,
+          message: req.flash("success")
         });
       });
     } else {

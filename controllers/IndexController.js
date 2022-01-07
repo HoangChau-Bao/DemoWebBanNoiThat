@@ -317,7 +317,7 @@ class IndexController {
     if(temp == '1'){
       var id = req.params.id;
       var user = req.body.username;
-
+      
       product.findOne({ _id: id }, (err, productResult) => {
         customers.findOneAndUpdate(
           { "loginInformation.userName": user },
