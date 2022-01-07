@@ -14,7 +14,8 @@ describe("Test", () => {
         
         //singleA.pushObject();
         //singleB.pushObject();
-        console.log(singleB.getList());
+        //singleA.getList()
+        console.log(singleA.getList());
         console.log(singleA.publicProperty);
         done();
     })

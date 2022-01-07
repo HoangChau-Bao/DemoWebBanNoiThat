@@ -34,22 +34,23 @@ class AdminController {
     if (req.isAuthenticated()) {
       var numberItemPerpage = 12;
       var page = req.params.page;
+      var singleA = mySingleton.getInstance();//singleton
       product.find({}, (err, productResult) => {
         admin.findOne(
           { "loginInformation.userName": req.session.passport.user.username },
           (err, resultCustomer) => {
             supplier.find({}, (err, supplierResult) => {
-              type.find({}, (err, typeResult) => {
+ 
                 res.render("products-manager", {
                   products: productResult,
                   customer: resultCustomer,
-                  types: typeResult,
+                  types: singleA.getList(),//singleton
                   suppliers: supplierResult,
                   message: req.flash("success"),
                   page: page,
                   numberItemPerpage: numberItemPerpage,
                 });
-              });
+
             });
           }
         );
@@ -59,21 +60,22 @@ class AdminController {
     }
   }
   getAddProductPage(req, res, next) {
+    var singleA = mySingleton.getInstance();//singleton
     if (req.isAuthenticated()) {
       supplier.find({}, (err, supplierResult) => {
-        type.find({}, (err, typeResult) => {
+       
           admin.findOne(
             { "loginInformation.userName": req.session.passport.user.username },
             (err, customerResult) => {
               res.render("add-product", {
                 suppliers: supplierResult,
-                types: typeResult,
+                types:  singleA.getList(),//singleton
                 customer: customerResult,
                 message: "",
               });
             }
           );
-        });
+        
       });
     } else {
       res.redirect("/admin/login");
@@ -122,22 +124,23 @@ class AdminController {
   getProductManagerPage(req, res, next) {
     if (req.isAuthenticated()) {
       var numberItemPerpage = 12;
+      var singleA = mySingleton.getInstance(); //singleton
       product.find({}, (err, productResult) => {
         admin.findOne(
           { "loginInformation.userName": req.session.passport.user.username },
           (err, resultCustomer) => {
             supplier.find({}, (err, supplierResult) => {
-              type.find({}, (err, typeResult) => {
+              
                 res.render("products-manager", {
                   products: productResult,
                   customer: resultCustomer,
-                  types: typeResult,
+                  types: singleA.getList(),//singleton
                   suppliers: supplierResult,
                   message: req.flash("success"),
                   page: 1,
                   numberItemPerpage: numberItemPerpage,
                 });
-              });
+              
             });
           }
         );
@@ -190,10 +193,11 @@ class AdminController {
     }
   }
   getUpdateProductPage(req, res, next) {
+    var singleA = mySingleton.getInstance();//singleton
     if (req.isAuthenticated()) {
       var idProduct = req.params.id;
       product.findOne({ _id: idProduct }, (err, productResult) => {
-        type.find({}, (err, typeResult) => {
+
           supplier.find({}, (err, supplierResult) => {
             admin.findOne(
               { "loginInformation.userName": req.session.passport.user.username },
@@ -201,13 +205,13 @@ class AdminController {
                 res.render("update-product", {
                   customer: customerResult,
                   product: productResult,
-                  types: typeResult,
+                  types: singleA.getList(),//singleton
                   suppliers: supplierResult,
                 });
               }
             );
           });
-        });
+        
       });
     } else {
       res.redirect("/admin/login");
@@ -250,23 +254,13 @@ class AdminController {
   }
   getCategoriesManagerPage(req, res, next) {
     var numberItemPerpage = 6;
-    var singleA = mySingleton.getInstance();
+    var singletonCate = mySingleton.getInstance();//singleton
     if(req.isAuthenticated()) {
       admin.findOne({"loginInformation.userName": req.session.passport.user.username}, (err, customerResult) => {
-        // type.find({}, (err, typeResult) => {
-        //   res.render('categories-manager', {
-        //     customer: customerResult,
-        //     categories: typeResult,
-        //     page: 1,
-        //     numberItemPerpage: numberItemPerpage,
-        //     message: req.flash("success")
-        //   });
-        //   //console.log(typeResult);
-        // });
         
         res.render('categories-manager', {
           customer: customerResult,
-          categories: singleA.getList(),
+          categories: singletonCate.getList(),//singleton
           page: 1,
           numberItemPerpage: numberItemPerpage,
           message: req.flash("success")
@@ -280,16 +274,15 @@ class AdminController {
     if(req.isAuthenticated()) {
       var numberItemPerpage = 6;
       var page = req.params.page;
+      var singletonCate = mySingleton.getInstance();//singleton
       admin.findOne({"loginInformation.userName": req.session.passport.user.username}, (err, customerResult) => {
-        type.find({}, (err, typeResult) => {
           res.render('categories-manager', {
             customer: customerResult,
-            categories: typeResult,
+            categories: singletonCate.getList(),//singleton
             page: page,
             numberItemPerpage: numberItemPerpage,
             message: req.flash("success")
           });
-        });
       });
     } else {
       res.redirect('/admin/login');
@@ -317,6 +310,7 @@ class AdminController {
     }
   }
   postAddCategories(req, res, next) {
+    var singleA = mySingleton.getInstance(); //singleton
     if(req.isAuthenticated()) {
       var data = {
         'typeName': req.body.name,
@@ -326,10 +320,12 @@ class AdminController {
       var newCategories = new type(data);
       newCategories.save()
       .then(() => {
+        singleA.updateList(); //singleton
         req.flash('success', 'Thêm danh mục thành công!');
         res.redirect('/admin/dashboard/categories-manager/');
       })
       .catch((err) => {
+        singleA.updateList(); //singleton
         console.log(err);
         req.flash('error', 'Thêm danh mục không thành công! Có lỗi xảy ra!');
       });
@@ -338,6 +334,7 @@ class AdminController {
     }
   }
   postUpdateCategoriesPage(req, res, next) {
+    var singleA = mySingleton.getInstance(); //singleton
     if (req.isAuthenticated()) {
       var id = req.params.id;
       type.findOne({ _id: id }, (err, typeResult) => {
@@ -348,10 +345,12 @@ class AdminController {
         type
           .findOneAndUpdate({ _id: id }, data, { new: true })
           .then(() => {
+            singleA.updateList(); //singleton
             req.flash("success", "Cập nhật thông tin danh mục thành công!");
             res.redirect("/admin/dashboard/categories-manager");
           })
           .catch((err) => {
+            singleA.updateList(); //singleton
             req.flash(
               "error",
               "Cập nhật thông tin danh mục không thành công! Có lỗi xảy ra!"
@@ -359,19 +358,23 @@ class AdminController {
             next();
           });
       });
+
     } else {
       res.redirect("/admin/login");
     }
   }
   getDeleteCategoriesInfo(req, res, next) {
+    var singleA = mySingleton.getInstance(); //singleton
     if (req.isAuthenticated()) {
       var id = req.params.id;
       type.findOneAndRemove({ _id: id }, (err, result) => {
         if (err) {
           console.log(err);
+          singleA.updateList();//singleton
           req.flash("error", "Xóa danh mục không thành công! Có lỗi xảy ra!");
           next();
         }
+        singleA.updateList();//singleton
         req.flash("success", "Xóa danh mục thành công!");
         res.redirect("/admin/dashboard/categories-manager");
       });

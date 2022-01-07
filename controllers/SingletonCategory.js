@@ -9,8 +9,7 @@ var mySingleton = (function () {
 
       
       //Hàm private
-      async function privateMethod(){ 
-        if(listCategory.length == 0){
+      async function privateGetList(){ 
           await type.find({},async (err, typeResult) => {
             await typeResult.forEach(element => {
                 let a = {};
@@ -21,12 +20,29 @@ var mySingleton = (function () {
                 listCategory.push(a);
             });           
           });
-        }
         //console.log(listCategory);
       }
 
+      async function privateUpdateList(){ 
+        while(listCategory.length > 0)
+          await listCategory.pop();
+
+        await type.find({},async (err, typeResult) => {
+          await typeResult.forEach(element => {
+              let a = {};
+              a._id = element._id;
+              a.typeName = element.typeName;
+              a.thumbnail = element.thumbnail;
+              a.status = element.status;
+              listCategory.push(a);
+          });           
+        });
+      console.log(listCategory);
+    }
+
+
       if(listCategory.length == 0)
-        privateMethod();
+        privateGetList();
 
       
       //Hàm và biến public
@@ -35,6 +51,9 @@ var mySingleton = (function () {
         publicProperty: 'haha',
         getList: function () {
           return listCategory;
+        },
+        updateList: function() {
+          privateUpdateList();
         },
         pushObject: function() {
           let a = {};
