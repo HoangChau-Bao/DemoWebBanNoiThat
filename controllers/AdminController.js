@@ -4,33 +4,43 @@ const product = require("../models/products");
 const admin = require("../models/admin");
 const bill = require('../models/bills');
 const region = require("../models/region");
-const mySingleton = require('../controllers/SingletonCategory');
+const mySingleton = require('../controllers/SingletonCategory'); //Import class Singleton
+const myTemplateMethod = require('./TemplatePattern'); //Import class Template Method
+
+let myTemplate = new myTemplateMethod(); //Template method
+
 class AdminController {
-  getLoginPage(req, res, next) {
-    res.render("login", { message: req.flash("error") });
+
+  getLoginPage(req, res, next) {    
+    myTemplate.PrintInformation(req,'getLoginPage','AdminController');
+    res.render("login", { message: req.flash("error")});
   }
   getDashboardPage(req, res, next) {;
+    myTemplate.PrintInformation(req,'getDashboardPage','AdminController');
     if (req.isAuthenticated()) {
       product.find({}, (err, productResult) => {
         bill.find({}, (err, billResult) => {
           admin.findOne(
             { "loginInformation.userName": req.session.passport.user.username },
             (err, customerResult) => {
+              
               res.render("dashboard", {
                 message: req.flash("success"),
                 customer: customerResult,
                 abc: billResult,
                 products: productResult
               });
+              
             }
           );
         });
-      })
+      })     
     } else {
       res.redirect("/admin/login");
     }
   }
   getProductManagerAtPage(req, res, next) {
+    myTemplate.PrintInformation(req,'getProductManagerAtPage','AdminController');
     if (req.isAuthenticated()) {
       var numberItemPerpage = 12;
       var page = req.params.page;
@@ -60,6 +70,7 @@ class AdminController {
     }
   }
   getAddProductPage(req, res, next) {
+    myTemplate.PrintInformation(req,'getAddProductPage','AdminController');
     var singleA = mySingleton.getInstance();//singleton
     if (req.isAuthenticated()) {
       supplier.find({}, (err, supplierResult) => {
@@ -122,6 +133,7 @@ class AdminController {
     }
   }
   getProductManagerPage(req, res, next) {
+    myTemplate.PrintInformation(req,'getProductManagerPage','AdminController');
     if (req.isAuthenticated()) {
       var numberItemPerpage = 12;
       var singleA = mySingleton.getInstance(); //singleton
@@ -253,6 +265,7 @@ class AdminController {
     }
   }
   getCategoriesManagerPage(req, res, next) {
+    myTemplate.PrintInformation(req,'getCategoriesManagerPage','AdminController');
     var numberItemPerpage = 6;
     var singletonCate = mySingleton.getInstance();//singleton
     if(req.isAuthenticated()) {
@@ -271,6 +284,7 @@ class AdminController {
     }
   }
   getCategoriesManagerAtPage(req, res, next) {
+    myTemplate.PrintInformation(req,'getCategoriesManagerAtPage','AdminController');
     if(req.isAuthenticated()) {
       var numberItemPerpage = 6;
       var page = req.params.page;
@@ -383,6 +397,7 @@ class AdminController {
     }
   }
   getOrdersManagerPage(req, res, next) {
+    myTemplate.PrintInformation(req,'getOrdersManagerPage','AdminController');
     var numberItemPerpage = 6;
     if(req.isAuthenticated()) {
       admin.findOne({"loginInformation.userName": req.session.passport.user.username}, (err, customerResult) => {
@@ -401,6 +416,7 @@ class AdminController {
     }
   }
   getPendingOrderPage(req, res, next) {
+    myTemplate.PrintInformation(req,'getPendingOrderPage','AdminController');
     var numberItemPerpage = 6;
     if(req.isAuthenticated()) {
       admin.findOne({"loginInformation.userName": req.session.passport.user.username}, (err, customerResult) => {
@@ -419,6 +435,7 @@ class AdminController {
     }
   }
   getPendingOrderAtPage(req, res, next) {
+    myTemplate.PrintInformation(req,'getPendingOrderAtPage','AdminController');
     var numberItemPerpage = 6;
     var page = req.params.page;
     if(req.isAuthenticated()) {
@@ -535,6 +552,7 @@ class AdminController {
     });
   }
   getLogout(req, res, next) {
+    myTemplate.PrintInformation(req,'getLogout','AdminController');
     req.logout();
     res.redirect('/admin/login');
   }
