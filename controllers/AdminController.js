@@ -13,11 +13,11 @@ let myTemplate = new myTemplateMethod(); //Template method
 class AdminController {
 
   getLoginPage(req, res, next) {    
-    myTemplate.PrintInformation(req,'getLoginPage','AdminController');
+    myTemplate.PrintInformation(req,'getLoginPage','AdminController'); //Template Method
     res.render("login", { message: req.flash("error")});
   }
   getDashboardPage(req, res, next) {;
-    myTemplate.PrintInformation(req,'getDashboardPage','AdminController');
+    myTemplate.PrintInformation(req,'getDashboardPage','AdminController'); //Template Method
     if (req.isAuthenticated()) {
       product.find({}, (err, productResult) => {
         bill.find({}, (err, billResult) => {
@@ -41,7 +41,7 @@ class AdminController {
     }
   }
   getProductManagerAtPage(req, res, next) {
-    myTemplate.PrintInformation(req,'getProductManagerAtPage','AdminController');
+    myTemplate.PrintInformation(req,'getProductManagerAtPage','AdminController'); //Template Method
     if (req.isAuthenticated()) {
       var numberItemPerpage = 12;
       var page = req.params.page;

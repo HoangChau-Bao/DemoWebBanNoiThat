@@ -4,7 +4,6 @@ const type = require("../models/types");
 
 class CategoriesController {
   getList(req, res, next) {
-    var singleA = mySingleton.getInstance();
     var id = req.params.id;
     var itemsPerPage = 6;
     req.session.idCategories = id;
@@ -21,7 +20,6 @@ class CategoriesController {
         });
       });
     });
-    singleA.updateList(); //sing
   }
   getListAtPage(req, res, next) {
     var id = req.session.idCategories;

@@ -1,5 +1,4 @@
 const type = require("../models/types");
-const { getList } = require("./CategoriesController");
 const myIterator = require('../controllers/IteratorPattern'); //iterator
 
 var mySingleton = (function () {
@@ -7,7 +6,6 @@ var mySingleton = (function () {
     var instance;
     let listCategory = [];
     var Result = [];
-
     function init() {
       //Hàm private
       async function privateGetList(){ 
@@ -33,16 +31,10 @@ var mySingleton = (function () {
             var iterator = new myIterator(listCategory,Result); //Iterator
             iterator.each();         
           });
-          
-          
-        //console.log(listCategory);
     }
-
 
       if(listCategory.length == 0)
         privateGetList();
-
-      
       //Hàm và biến public
       return {
 
