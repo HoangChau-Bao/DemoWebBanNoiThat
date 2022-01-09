@@ -19,23 +19,22 @@ class TemplateMethod
 
 class myTemplateMethod extends TemplateMethod {
     PrintCurrentFunctionName(currentFuntionName,controllerName){   
+        console.log('\n\n-----------------------------------------')
         console.time('Template');
-        console.log('\n\nCurrent funtion: ' + controllerName + ' ' + currentFuntionName);    
+        console.log('Current funtion: ' + controllerName + ' ' + currentFuntionName);    
     }
     PrintPreRouteInformation(req){
         //super.display();
-        console.log('Pre Url: ' + req.headers.host + req.originalUrl);
         console.log(req.route);      
         if(req.body){
             console.log('Request body:');
             console.log(req.body);
         }
-        if(req.user){
-            console.log('User:');
-            console.log(req.user);
-        }
-        
-        console.timeEnd("Template");
+        // if(req.user){
+        //     console.log('User:');
+        //     console.log(req.user);
+        // }
+        console.timeEnd("Template"); 
     }
     
 }

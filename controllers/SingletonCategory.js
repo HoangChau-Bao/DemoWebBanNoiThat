@@ -1,43 +1,41 @@
 const type = require("../models/types");
 const { getList } = require("./CategoriesController");
+const myIterator = require('../controllers/IteratorPattern'); //iterator
 
 var mySingleton = (function () {
 
     var instance;
     let listCategory = [];
-    function init() {
+    var Result = [];
 
-      
+    function init() {
       //Hàm private
       async function privateGetList(){ 
           await type.find({},async (err, typeResult) => {
             await typeResult.forEach(element => {
-                let a = {};
-                a._id = element._id;
-                a.typeName = element.typeName;
-                a.thumbnail = element.thumbnail;
-                a.status = element.status;
-                listCategory.push(a);
-            });           
+                Result = typeResult;
+            });    
+            var iterator = new myIterator(listCategory,Result); //Iterator
+            iterator.each();       
           });
-        //console.log(listCategory);
+
+          
       }
 
       async function privateUpdateList(){ 
         while(listCategory.length > 0)
           await listCategory.pop();
 
-        await type.find({},async (err, typeResult) => {
-          await typeResult.forEach(element => {
-              let a = {};
-              a._id = element._id;
-              a.typeName = element.typeName;
-              a.thumbnail = element.thumbnail;
-              a.status = element.status;
-              listCategory.push(a);
-          });           
-        });
-      console.log(listCategory);
+         await type.find({},async (err, typeResult) => {
+            await typeResult.forEach(element => {
+                Result = typeResult;
+            });  
+            var iterator = new myIterator(listCategory,Result); //Iterator
+            iterator.each();         
+          });
+          
+          
+        //console.log(listCategory);
     }
 
 

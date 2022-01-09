@@ -4,6 +4,7 @@ const product = require("../models/products");
 const admin = require("../models/admin");
 const bill = require('../models/bills');
 const region = require("../models/region");
+
 const mySingleton = require('../controllers/SingletonCategory'); //Import class Singleton
 const myTemplateMethod = require('./TemplatePattern'); //Import class Template Method
 
@@ -50,7 +51,6 @@ class AdminController {
           { "loginInformation.userName": req.session.passport.user.username },
           (err, resultCustomer) => {
             supplier.find({}, (err, supplierResult) => {
- 
                 res.render("products-manager", {
                   products: productResult,
                   customer: resultCustomer,
